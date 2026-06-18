@@ -1,0 +1,748 @@
+/* ===========================
+   FONT FACES
+   =========================== */
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ===========================
+   VARIABLES
+   =========================== */
+:root {
+  --color-navy:     #0E131A;
+  --color-brown:    #5A3D17;
+  --color-olive:    #65A400;
+  --color-burgundy: #B11644;
+  --color-orange:   #FF5600;
+  --color-gold:     #FFB600;
+  --color-blue:     #4DA4EA;
+  --color-cream:    #F4F3F2;
+
+  --color-text: var(--color-navy);
+  --color-bg:   var(--color-cream);
+
+  --font: 'Titillium Web', sans-serif;
+
+  --sidebar-width:  265px;
+}
+
+/* ===========================
+   RESET
+   =========================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===========================
+   BASE
+   =========================== */
+html {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body { min-height: 100vh; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+strong, b { font-weight: 600; }
+em { font-style: italic; }
+
+/* ===========================
+   LAYOUT
+   =========================== */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===========================
+   SIDEBAR
+   =========================== */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background-color: var(--color-cream);
+  border-right: 1px solid rgba(14, 19, 26, 0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 1.5rem 2rem;
+}
+
+/* Small brand mark at top of sidebar */
+.sidebar-mark {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: rgba(14, 19, 26, 0.25);
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: color 0.2s ease;
+}
+.sidebar-mark:hover { color: var(--color-navy); }
+/* gold rule below the mark */
+.sidebar-mark::after {
+  content: '';
+  display: block;
+  width: 1.25rem;
+  height: 1px;
+  background-color: var(--color-gold);
+  margin-top: 0.625rem;
+}
+
+/* Search */
+.sidebar-search-wrap {
+  position: relative;
+  margin-bottom: 1.75rem;
+}
+
+.sidebar-search-icon {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+  color: rgba(14, 19, 26, 0.25);
+  pointer-events: none;
+}
+
+.sidebar-search {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(14, 19, 26, 0.1);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem 0.4rem 1.75rem;
+  font-family: var(--font);
+  font-size: 0.775rem;
+  font-weight: 300;
+  color: var(--color-navy);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.sidebar-search::placeholder {
+  color: rgba(14, 19, 26, 0.25);
+  letter-spacing: 0.06em;
+}
+
+.sidebar-search:focus {
+  border-color: rgba(14, 19, 26, 0.22);
+}
+
+.sidebar-nav { flex: 1; }
+
+/* Folders */
+.nav-folder { margin-bottom: 0.25rem; }
+
+.nav-folder-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--color-brown);
+  opacity: 0.55;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 3px;
+  list-style: none;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-folder-summary::-webkit-details-marker { display: none; }
+.nav-folder-summary::marker { display: none; }
+.nav-folder-summary:hover { opacity: 1; }
+
+.nav-folder-arrow {
+  font-size: 0.4rem;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nav-folder[open] > .nav-folder-summary .nav-folder-arrow {
+  transform: rotate(90deg);
+}
+
+.nav-folder-items {
+  padding-left: 0.875rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Nav links */
+.nav-link {
+  display: block;
+  padding: 0.3rem 0.5rem;
+  padding-left: calc(0.5rem - 1.5px);
+  color: rgba(14, 19, 26, 0.5);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-bottom: 0.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-left: 1.5px solid transparent;
+}
+
+.nav-link:hover { color: var(--color-navy); }
+
+.nav-link.active {
+  color: var(--color-navy);
+  border-left-color: var(--color-gold);
+}
+
+/* About link — pinned to bottom of sidebar */
+.sidebar-about-wrap {
+  border-top: 1px solid rgba(14, 19, 26, 0.07);
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.sidebar-about {
+  display: block;
+  padding: 0.3rem 0.5rem;
+  padding-left: calc(0.5rem - 1.5px);
+  color: rgba(14, 19, 26, 0.5);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  text-decoration: none;
+  border-left: 1.5px solid transparent;
+  border-radius: 3px;
+  transition: color 0.2s ease;
+}
+
+.sidebar-about:hover { color: var(--color-navy); }
+
+.sidebar-about.active {
+  color: var(--color-navy);
+  border-left-color: var(--color-gold);
+}
+
+/* ===========================
+   MAIN AREA
+   =========================== */
+.main-area {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===========================
+   HOME HERO
+   =========================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  align-items: center;
+  padding: 5rem 3.5rem;
+  gap: 5rem;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ExtraLight title with a gold accent rule — the page's main typographic moment */
+.hero-title {
+  font-size: clamp(4.5rem, 9vw, 10rem);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  color: var(--color-text);
+  margin-bottom: 0;
+}
+
+.hero-title::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  background-color: var(--color-gold);
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.hero-subtitle {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: rgba(14, 19, 26, 0.55);
+  line-height: 1.9;
+  max-width: 320px;
+  letter-spacing: 0.02em;
+}
+
+.hero-media {
+  display: flex;
+  align-items: center;
+}
+
+/* Dark video container — the visual anchor of the home page */
+.hero-video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-navy);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  color: rgba(255, 250, 242, 0.18);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero-video-placeholder svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ===========================
+   PAGE CONTENT
+   =========================== */
+.page-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  width: 100%;
+}
+
+/* ===========================
+   POST
+   =========================== */
+.post-wrapper {
+  padding: 4.5rem 2rem;
+  width: 100%;
+}
+
+.post-header {
+  max-width: 660px;
+  margin: 0 auto 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(14, 19, 26, 0.07);
+}
+
+/* Date in warm brown — not cold grey */
+.post-meta {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--color-brown);
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.875rem;
+}
+
+/* Regular weight post title — the content's typographic anchor */
+.post-title {
+  font-size: 2.625rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.post-subtitle {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: rgba(14, 19, 26, 0.5);
+  line-height: 1.5;
+  margin-top: 0.625rem;
+  letter-spacing: 0.01em;
+}
+
+.post-content {
+  max-width: 660px;
+  margin: 0 auto;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  font-family: var(--font);
+  line-height: 1.3;
+  color: var(--color-text);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* h2: Regular weight — feels solid relative to Light body */
+.post-content h2 {
+  font-size: 1.375rem;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(14, 19, 26, 0.07);
+}
+
+.post-content h3 {
+  font-size: 1.125rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.post-content h4 {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(14, 19, 26, 0.5);
+}
+
+.post-content p { margin-bottom: 1.5rem; }
+
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.25rem;
+}
+
+.post-content li { margin-bottom: 0.375rem; }
+
+/* Internal links — blue */
+.post-content a:not([href^="http"]):not([href^="//"]):not([href^="mailto:"]) {
+  color: var(--color-olive);
+  border-bottom: 1px solid rgba(101, 164, 0, 0.3);
+  transition: opacity 0.2s ease;
+}
+.post-content a:not([href^="http"]):not([href^="//"]):not([href^="mailto:"]):hover {
+  opacity: 0.65;
+}
+
+/* External links — olive, with ↗ marker */
+.post-content a[href^="http"],
+.post-content a[href^="//"] {
+  color: var(--color-blue);
+  border-bottom: 1px solid rgba(77, 164, 234, 0.3);
+  transition: opacity 0.2s ease;
+}
+.post-content a[href^="http"]:hover,
+.post-content a[href^="//"]:hover {
+  opacity: 0.65;
+}
+.post-content a[href^="http"]::after,
+.post-content a[href^="//"]::after {
+  content: ' ↗';
+  font-size: 0.7em;
+  vertical-align: super;
+  opacity: 0.55;
+}
+
+.post-content blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 2px solid rgba(14, 19, 26, 0.15);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(14, 19, 26, 0.6);
+}
+
+.post-content pre {
+  position: relative;
+  background-color: var(--color-navy);
+  color: rgba(255, 250, 242, 0.88);
+  padding: 3rem 1.5rem 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Mac title bar */
+.post-content pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.25rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Traffic light dots */
+.post-content pre::after {
+  content: '';
+  position: absolute;
+  top: 0.75rem;
+  left: 0.875rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #FF5F57;
+  box-shadow:
+    18px 0 0 0 #FEBC2E,
+    36px 0 0 0 #28C840;
+}
+
+.post-content code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85em;
+  background-color: rgba(14, 19, 26, 0.05);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+  letter-spacing: 0;
+}
+
+.post-content pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 1em;
+  color: inherit;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 300;
+}
+
+.post-content th {
+  padding: 0.625rem 1rem;
+  text-align: left;
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(14, 19, 26, 0.4);
+  border-bottom: 1px solid rgba(14, 19, 26, 0.1);
+}
+
+.post-content td {
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid rgba(14, 19, 26, 0.06);
+}
+
+.post-content tr:last-child td { border-bottom: none; }
+
+/* Images — subtle bottom accent */
+.post-content img {
+  border-bottom: 3px solid rgba(14, 19, 26, 0.12);
+  border-radius: 16px;
+  margin: 2rem auto;
+}
+
+/* GIFs — gold bottom accent */
+.post-content img[src$=".gif"],
+.post-content img[src$=".GIF"] {
+  border-bottom-color: var(--color-gold);
+}
+
+/* Videos — orange bottom accent */
+.post-content video {
+  display: block;
+  width: 100%;
+  border-bottom: 3px solid var(--color-orange);
+  border-radius: 16px;
+  margin: 2rem auto;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid rgba(14, 19, 26, 0.07);
+  margin: 3rem 0;
+}
+
+/* ===========================
+   BLOG LISTING
+   =========================== */
+.posts-list-heading {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(14, 19, 26, 0.25);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(14, 19, 26, 0.07);
+}
+
+.posts-list { display: flex; flex-direction: column; }
+
+.post-card {
+  display: flex;
+  align-items: baseline;
+  gap: 1.75rem;
+  padding: 1.125rem 0;
+  border-bottom: 1px solid rgba(14, 19, 26, 0.06);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: opacity 0.2s ease;
+}
+
+.post-card:hover { opacity: 0.6; }
+
+/* Warm brown date — not cold grey */
+.post-card-date {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--color-brown);
+  opacity: 0.65;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  min-width: 85px;
+  text-transform: uppercase;
+}
+
+.post-card-title {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font);
+  line-height: 1.25;
+  color: var(--color-text);
+  font-weight: 300;
+}
+
+/* ===========================
+   SCROLLBAR
+   =========================== */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(14, 19, 26, 0.1); border-radius: 2px; }
+
+/* ===========================
+   UTILITIES
+   =========================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 4rem 3rem;
+    gap: 3rem;
+  }
+
+  .hero-title { font-size: clamp(3.5rem, 12vw, 7rem); }
+}
+
+@media (max-width: 768px) {
+  :root { --sidebar-width: 0px; }
+
+  .sidebar { transform: translateX(-100%); }
+  .main-area { margin-left: 0; }
+  .site-header { padding: 0 1.5rem; }
+
+  .hero { padding: 3rem 1.5rem; }
+  .page-content { padding: 3rem 1.5rem; }
+  .post-wrapper { padding: 3rem 1.5rem; }
+}

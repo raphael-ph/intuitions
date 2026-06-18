@@ -1,0 +1,29 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import BaseHead from '../components/BaseHead.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>html { background-color: #F4F3F2; }</style>
+    <ClientRouter />
+  </head>
+  <body>
+    <div class="app-container">
+      <Sidebar />
+      <div class="main-area">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>

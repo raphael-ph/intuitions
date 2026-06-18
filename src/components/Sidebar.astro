@@ -1,0 +1,131 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => a.id.localeCompare(b.id));
+
+interface NavItem {
+  title: string;
+  slug: string;
+}
+
+const folders = new Map<string, NavItem[]>();
+const rootPosts: NavItem[] = [];
+
+for (const post of posts) {
+  const slug = post.id.replace(/\.(md|mdx)$/, '');
+  const parts = slug.split('/');
+
+  if (parts.length === 1) {
+    rootPosts.push({ title: post.data.title, slug: `/blog/${slug}` });
+  } else {
+    const folder = parts[0];
+    if (!folders.has(folder)) folders.set(folder, []);
+    folders.get(folder)!.push({ title: post.data.title, slug: `/blog/${slug}` });
+  }
+}
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<aside class="sidebar" transition:persist>
+  <a href="/" class="sidebar-mark">intuitions</a>
+
+  <div class="sidebar-search-wrap">
+    <svg class="sidebar-search-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+    <input
+      type="text"
+      id="sidebar-search"
+      class="sidebar-search"
+      placeholder="search"
+      autocomplete="off"
+      spellcheck="false"
+    />
+  </div>
+
+  <nav class="sidebar-nav">
+    {Array.from(folders.entries()).map(([folder, items]) => (
+      <details
+        class="nav-folder"
+        open={items.some(item => currentPath === item.slug)}
+      >
+        <summary class="nav-folder-summary">
+          <span class="nav-folder-arrow">▶</span>
+          <span>{folder}</span>
+        </summary>
+        <div class="nav-folder-items">
+          {items.map(item => (
+            <a
+              href={item.slug}
+              class:list={['nav-link', { active: currentPath === item.slug }]}
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </details>
+    ))}
+
+    {rootPosts.map(post => (
+      <a
+        href={post.slug}
+        class:list={['nav-link', { active: currentPath === post.slug }]}
+      >
+        {post.title}
+      </a>
+    ))}
+  </nav>
+
+  <div class="sidebar-about-wrap">
+    <a
+      href="/about"
+      class:list={['sidebar-about', { active: currentPath === '/about' }]}
+    >
+      about
+    </a>
+  </div>
+</aside>
+
+<script>
+  // Search — init once, guard against duplicate listeners from persist
+  const input = document.getElementById('sidebar-search') as HTMLInputElement | null;
+  if (input && !input.dataset.ready) {
+    input.dataset.ready = 'true';
+    input.addEventListener('input', () => {
+      const query = input.value.toLowerCase().trim();
+      const links = document.querySelectorAll<HTMLElement>('.sidebar-nav .nav-link');
+      const folders = document.querySelectorAll<HTMLDetailsElement>('.nav-folder');
+
+      if (!query) {
+        links.forEach(l => l.style.display = '');
+        folders.forEach(f => { f.style.display = ''; f.open = false; });
+        return;
+      }
+
+      links.forEach(link => {
+        link.style.display = link.textContent?.trim().toLowerCase().includes(query) ? '' : 'none';
+      });
+
+      folders.forEach(folder => {
+        const hasVisible = [...folder.querySelectorAll<HTMLElement>('.nav-link')]
+          .some(l => l.style.display !== 'none');
+        folder.style.display = hasVisible ? '' : 'none';
+        if (hasVisible) folder.open = true;
+      });
+    });
+  }
+
+  // Update active link on every navigation (sidebar persists, so classes don't auto-update)
+  document.addEventListener('astro:page-load', () => {
+    const path = window.location.pathname.replace(/\/$/, '');
+    document.querySelectorAll<HTMLAnchorElement>('.nav-link').forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === path);
+    });
+    const aboutLink = document.querySelector<HTMLAnchorElement>('.sidebar-about');
+    if (aboutLink) {
+      aboutLink.classList.toggle('active', path === '/about');
+    }
+  });
+</script>
