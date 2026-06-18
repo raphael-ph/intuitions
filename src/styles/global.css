@@ -329,7 +329,7 @@ em { font-style: italic; }
 }
 
 .hero-logo {
-  height: clamp(4.5rem, 9vw, 10rem);
+  height: clamp(8rem, 16vw, 18rem);
   width: auto;
   object-fit: contain;
   border-radius: 14px;
