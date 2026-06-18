@@ -1,5 +1,4 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import { Image } from 'astro:assets';
 import MeAndMaggie from '../assets/me-and-maggie.jpg';
 import Layout from '../layouts/BlogPost.astro';
@@ -9,16 +8,13 @@ import Layout from '../layouts/BlogPost.astro';
 	title="About Me"
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('Jun 17 2026')}
-	heroImage={AboutHeroImage}
 >
 	<div align="center">
-<br />
 <h1>Raphael Silva e Silva</h1>
 <h3>Software Engineer, AI/ML Engineer & M.Sc. Researcher</h3>
 <p>
 <em>Building production-grade AI agents and researching mathematical reasoning in LLMs.</em>
 </p>
-<br />
 </div>
 
 <Image src={MeAndMaggie} alt="Me and Maggie" width={560} class="about-photo" />
