@@ -318,7 +318,7 @@ em { font-style: italic; }
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: 860px;
+  max-width: none;
   transform: translateX(calc(-1 * var(--sidebar-width) / 2));
 }
 
