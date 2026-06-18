@@ -135,7 +135,9 @@ em { font-style: italic; }
 
 /* Small brand mark at top of sidebar */
 .sidebar-mark {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.25em;
@@ -145,6 +147,18 @@ em { font-style: italic; }
   margin-bottom: 2.5rem;
   transition: color 0.2s ease;
 }
+
+.sidebar-logo-hint {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.35;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar-mark:hover .sidebar-logo-hint { opacity: 0.7; }
 .sidebar-mark:hover { color: var(--color-navy); }
 /* gold rule below the mark */
 .sidebar-mark::after {
@@ -318,6 +332,15 @@ em { font-style: italic; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.hero-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 2rem;
+  border-radius: 14px;
+  border: none;
 }
 
 /* ExtraLight title with a gold accent rule — the page's main typographic moment */
