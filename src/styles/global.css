@@ -329,7 +329,7 @@ em { font-style: italic; }
 }
 
 .hero-logo {
-  height: clamp(8rem, 16vw, 18rem);
+  height: clamp(7rem, 14vw, 24rem);
   width: auto;
   object-fit: contain;
   border-radius: 14px;
@@ -357,6 +357,11 @@ em { font-style: italic; }
   margin-bottom: 1.75rem;
 }
 
+.hero-body {
+  width: 100%;
+  padding-left: 4rem;
+}
+
 .hero-subtitle {
   font-size: 0.9375rem;
   font-weight: 300;
@@ -364,7 +369,7 @@ em { font-style: italic; }
   line-height: 1.9;
   letter-spacing: 0.02em;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 /* Dark video container — the visual anchor of the home page */
@@ -376,6 +381,7 @@ em { font-style: italic; }
   border-radius: 16px;
   overflow: hidden;
   position: relative;
+  padding-left: 5rem;
 }
 
 .hero-video-container video {
