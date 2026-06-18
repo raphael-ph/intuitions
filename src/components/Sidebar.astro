@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog');
+const posts = await getCollection('posts');
 posts.sort((a, b) => a.id.localeCompare(b.id));
 
 interface NavItem {
@@ -17,11 +17,11 @@ for (const post of posts) {
   const parts = slug.split('/');
 
   if (parts.length === 1) {
-    rootPosts.push({ title: post.data.title, slug: `/blog/${slug}` });
+    rootPosts.push({ title: post.data.title, slug: `/${slug}` });
   } else {
     const folder = parts[0];
     if (!folders.has(folder)) folders.set(folder, []);
-    folders.get(folder)!.push({ title: post.data.title, slug: `/blog/${slug}` });
+    folders.get(folder)!.push({ title: post.data.title, slug: `/${slug}` });
   }
 }
 
@@ -89,7 +89,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
 </aside>
 
 <script>
-  // Search — init once, guard against duplicate listeners from persist
   const input = document.getElementById('sidebar-search') as HTMLInputElement | null;
   if (input && !input.dataset.ready) {
     input.dataset.ready = 'true';
@@ -117,7 +116,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
     });
   }
 
-  // Update active link on every navigation (sidebar persists, so classes don't auto-update)
   document.addEventListener('astro:page-load', () => {
     const path = window.location.pathname.replace(/\/$/, '');
     document.querySelectorAll<HTMLAnchorElement>('.nav-link').forEach(link => {
