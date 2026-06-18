@@ -135,9 +135,7 @@ em { font-style: italic; }
 
 /* Small brand mark at top of sidebar */
 .sidebar-mark {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: block;
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.25em;
@@ -147,18 +145,6 @@ em { font-style: italic; }
   margin-bottom: 2.5rem;
   transition: color 0.2s ease;
 }
-
-.sidebar-logo-hint {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  opacity: 0.35;
-  border-radius: 4px;
-  flex-shrink: 0;
-  transition: opacity 0.2s ease;
-}
-
-.sidebar-mark:hover .sidebar-logo-hint { opacity: 0.7; }
 .sidebar-mark:hover { color: var(--color-navy); }
 /* gold rule below the mark */
 .sidebar-mark::after {
@@ -335,8 +321,8 @@ em { font-style: italic; }
 }
 
 .hero-logo {
-  width: 72px;
-  height: 72px;
+  height: clamp(4.5rem, 9vw, 10rem);
+  width: auto;
   object-fit: contain;
   margin-bottom: 2rem;
   border-radius: 14px;
