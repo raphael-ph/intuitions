@@ -362,8 +362,9 @@ em { font-style: italic; }
   font-weight: 300;
   color: rgba(14, 19, 26, 0.55);
   line-height: 1.9;
-  max-width: 320px;
   letter-spacing: 0.02em;
+  width: 100%;
+  text-align: center;
 }
 
 /* Dark video container — the visual anchor of the home page */
