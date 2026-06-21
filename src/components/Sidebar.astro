@@ -118,6 +118,31 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
 
   document.addEventListener('astro:page-load', () => {
     const path = window.location.pathname.replace(/\/$/, '');
+    const sidebar = document.querySelector<HTMLElement>('.sidebar');
+    const backdrop = document.querySelector<HTMLElement>('.sidebar-backdrop');
+    const toggle = document.querySelector<HTMLButtonElement>('.sidebar-toggle');
+
+    // Close sidebar on every navigation
+    sidebar?.classList.remove('open');
+    backdrop?.classList.remove('open');
+
+    // Hamburger open
+    if (toggle) {
+      toggle.onclick = () => {
+        sidebar?.classList.toggle('open');
+        backdrop?.classList.toggle('open');
+      };
+    }
+
+    // Backdrop closes sidebar
+    if (backdrop) {
+      backdrop.onclick = () => {
+        sidebar?.classList.remove('open');
+        backdrop.classList.remove('open');
+      };
+    }
+
+    // Active links
     document.querySelectorAll<HTMLAnchorElement>('.nav-link').forEach(link => {
       link.classList.toggle('active', link.getAttribute('href') === path);
     });

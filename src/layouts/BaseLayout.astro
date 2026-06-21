@@ -21,6 +21,12 @@ const { title, description } = Astro.props;
   <body>
     <div class="app-container">
       <Sidebar />
+      <div class="sidebar-backdrop"></div>
+      <button class="sidebar-toggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/>
+        </svg>
+      </button>
       <div class="main-area">
         <slot />
       </div>
