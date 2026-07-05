@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import introVideo from '../assets/Intuitions.mp4';
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -13,13 +14,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
       <div class="hero-body">
       <p class="hero-subtitle">{SITE_DESCRIPTION}</p>
       <div class="hero-video-container">
-        <!-- Replace with: <video src="/your-video.mp4" autoplay muted loop playsinline></video> -->
-        <div class="hero-video-placeholder">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-          <span>video</span>
-        </div>
+        <video src={introVideo} controls playsinline></video>
       </div>
       </div>
     </div>

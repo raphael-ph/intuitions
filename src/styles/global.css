@@ -412,7 +412,6 @@ em { font-style: italic; }
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  padding-left: 5rem;
 }
 
 .hero-video-container video {
