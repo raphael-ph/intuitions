@@ -686,6 +686,41 @@ em { font-style: italic; }
   margin: 2rem auto;
 }
 
+/* Captions — wrap any block in <figure>...<figcaption> to add a subtitle */
+.post-content figure {
+  margin: 2rem 0;
+}
+
+.post-content figure img,
+.post-content figure video,
+.post-content figure pre,
+.post-content figure table {
+  margin: 0 0 0.75rem;
+}
+
+.post-content figcaption {
+  font-size: 0.8125rem;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  color: rgba(14, 19, 26, 0.5);
+}
+
+/* Footnotes — tighter than regular paragraphs */
+.post-content .footnotes {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: rgba(14, 19, 26, 0.65);
+}
+
+.post-content .footnotes p {
+  margin-bottom: 0;
+}
+
+.post-content .footnotes li {
+  margin-bottom: 0.5rem;
+}
+
 .post-content hr {
   border: none;
   border-top: 1px solid rgba(14, 19, 26, 0.07);
