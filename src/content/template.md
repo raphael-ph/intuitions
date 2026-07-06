@@ -61,6 +61,13 @@ def hello():
 | -------- | -------- |
 | valor 1  | valor 2  |
 
+### LaTeX
+
+<!-- inline: $...$ · bloco: $$...$$ em linha própria, com linha em branco antes e depois -->
+Fórmula inline $E = mc^2$ no meio do texto.
+
+$$\mathcal{L}(\phi) \doteq \mathbb{E}_{q_\phi(z \mid x)} \big[ -\ln p_\phi(x \mid z) + \text{KL}\big[ q_\phi(z \mid x) \parallel p(z) \big] \big]$$
+
 ### Referência (nota de rodapé)
 
 <!-- o número referencia o texto no fim do post; pode repetir [^1] em vários lugares -->
