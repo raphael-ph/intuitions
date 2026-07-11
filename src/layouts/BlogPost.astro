@@ -8,12 +8,13 @@ interface Props {
   description: string;
   pubDate: Date;
   updatedDate?: Date;
+  draft?: boolean;
 }
 
-const { title, subtitle, description, pubDate, updatedDate } = Astro.props;
+const { title, subtitle, description, pubDate, updatedDate, draft } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noindex={draft}>
   <div class="post-wrapper">
     <div class="post-header">
       <div class="post-meta">
