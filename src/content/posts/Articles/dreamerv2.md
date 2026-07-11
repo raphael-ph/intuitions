@@ -109,7 +109,7 @@ Essa técnica é bastante clássica (caso queira se aprofundar, recomendo o Cap�
  
 ## Resultados
 
-Coloco aqui agora algumas experiências reais que tive ao desenvolver este modelo. Durante o processo de treinamento, pode-se ver a evolução da aprendizagem e como o modelo começa a capturar fatores reais da dinâmica do ambiente.
+Coloco aqui agora alguns resultados reais que tive ao desenvolver este modelo. Durante o processo de treinamento, pode-se ver a evolução da aprendizagem e como o modelo começa a capturar fatores reais da dinâmica do ambiente.
 
 Vemos que no começo, praticamente não existem raquetes e a pontuação é quase um borrão, ao passo que, eventualmente, o modelo passa a representar corretamente o ambiente:
 
