@@ -4,8 +4,8 @@ subtitle: "Minhas intuições sobre o artigo Mastering Atari with Discrete World
 description: "Minha intuição pessoal do DreamerV2"
 pubDate: 2026-07-05
 # updatedDate: 2026-06-18
-draft: true
-slug: "87082f67-2a38-4047-b528-a596122c71a8"
+draft: false
+# slug: "87082f67-2a38-4047-b528-a596122c71a8"
 ---
 <figure>
 
