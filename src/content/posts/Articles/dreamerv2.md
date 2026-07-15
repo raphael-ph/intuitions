@@ -2,8 +2,8 @@
 title: "A imaginação é mais importante que o conhecimento"
 subtitle: "Minhas intuições sobre o artigo Mastering Atari with Discrete World Models"
 description: "Minha intuição pessoal do DreamerV2"
-pubDate: 2026-07-05
-# updatedDate: 2026-06-18
+pubDate: 2026-07-14
+updatedDate: 2026-07-15
 draft: false
 # slug: "87082f67-2a38-4047-b528-a596122c71a8"
 ---
@@ -143,7 +143,7 @@ E, claro, não poderia faltar o resultado final, do agente treinado, tornando-se
 <figure style="max-width: 1000px; width: 50%; margin-inline: auto;">
 
 <video src="/assets/dreamerv2/episode_007.mp4" autoplay loop muted playsinline controls></video>
-<figcaption>Ambiente simulado pelo modelo de mundo ao final do treinamento. O agente treinado é representado pela raquete à esquerda.</figcaption>
+<figcaption>Ambiente simulado pelo modelo de mundo ao final do treinamento. O agente treinado é representado pela raquete à direita.</figcaption>
 
 </figure>
 
